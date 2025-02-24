@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOOM</title>
+
+    <!-- Подключаем локальный CSS js-dos -->
+    <link rel="stylesheet" href="jsdos/js-dos.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="dosbox" class="dosbox-container" style="width: 100vw; height: 60vh;"></div>
+
+    <!-- Подключаем локальный js-dos -->
+    <script src="jsdos/js-dos.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            if (typeof Dos === "undefined") {
+                console.error("❌ js-dos не загружен!");
+                return;
+            }
+            console.log("✅ js-dos загружен!");
+
+            let dosbox = Dos(document.getElementById("dosbox"), {
+                url: "games/doom.jsdos" // Локальный файл игры
+            });
+
+            dosbox.then(function (fs) {
+                console.log("✅ DOOM успешно загружен!");
+            }).catch(function (error) {
+                console.error("❌ Ошибка загрузки DOOM:", error);
+            });
+        });
+    </script>
+</body>
+</html>
